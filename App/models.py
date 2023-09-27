@@ -74,6 +74,8 @@ class Goal(models.Model):
 class Resource(models.Model):
     kind = models.CharField(max_length=100, blank=True)
     url = models.CharField(max_length=500, blank=True)
+    name = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=300, blank=True)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
 
 class Certificate(models.Model):
