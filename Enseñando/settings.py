@@ -65,7 +65,7 @@ PROJECT_APPS = [
     'activity',
     'score',
     'goal',
-    'lessonresource',
+    'resource',
     'avatar',
     'dictionary',
     'notification',

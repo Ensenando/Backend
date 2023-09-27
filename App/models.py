@@ -47,12 +47,16 @@ class Lesson(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
+    progress = models.IntegerField(default=0)
 
 
 class Activity(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    flag_completed = models.BooleanField(default=False)
+    num_by_lesson = models.IntegerField(default=1)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True)
 
 class Score(models.Model):
@@ -70,7 +74,7 @@ class Goal(models.Model):
 class Resource(models.Model):
     kind = models.CharField(max_length=100, blank=True)
     url = models.CharField(max_length=500, blank=True)
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True)
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
 
 class Certificate(models.Model):
     date = models.DateField()
