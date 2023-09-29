@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
-        fields = ["id","name","description","image","progress"]
+        fields = ["id","name","description","image",]
         read_only_fields = ["id",]
                 
 

@@ -39,7 +39,8 @@ urlpatterns = [
     path("goal/", include("goal.urls"), name="goal"),
     path("resource/", include("resource.urls"), name="resource"),
     path("avatar/", include("avatar.urls"), name="avatar"),
-    path("dictionary/", include("dictionary.urls"), name="dictionary"),
     path('notification/', include('notification.urls'), name='notification'),
     path('certificate/', include('certificate.urls'), name='certificate'),
+    path('tutorial/', include('tutorial.urls'), name='tutorial'),
+    path('medal/', include('medal.urls'), name='medal'),
 ]

@@ -5,5 +5,5 @@ from rest_framework import serializers
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
-        fields = ["id","name","description","flag_completed","num_by_lesson",]
+        fields = ["id","name","description","image","num_by_lesson","kind",]
         read_only_fields = ["id",]

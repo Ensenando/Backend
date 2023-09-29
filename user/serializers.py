@@ -20,7 +20,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ["id","names","surnames","email","nationality","date_of_birth","role","password"]
+        fields = ["id","names","surnames","email","date_of_birth","role","password","username",]
         read_only_fields = ["id",]
 
 class UserSerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ["id", "names", "surnames", "email", "nationality", "date_of_birth", "role", "password"]
+        fields = ["id", "names", "surnames", "email", "nationality", "date_of_birth", "role", "password", "username", "image"]
         read_only_fields = ["id", "role"]
 
     def __init__(self, *args, **kwargs):

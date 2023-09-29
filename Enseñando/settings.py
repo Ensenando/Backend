@@ -67,9 +67,10 @@ PROJECT_APPS = [
     'goal',
     'resource',
     'avatar',
-    'dictionary',
     'notification',
     'certificate',
+    'tutorial',
+    'medal',
 ]
 
 THIRD_PARTY_APPS = [

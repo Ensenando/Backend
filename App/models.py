@@ -39,25 +39,70 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     role = models.CharField(max_length=20, choices=[(role.value, role.value) for role in Role])
     student = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True,default='')
+    username = models.CharField(max_length=100, blank=True, null=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'email' # This is the field that will be used to login
+
+class UserAudit(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    log_date = models.DateTimeField(blank=True, null=True)
 
 class Lesson(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.CharField(max_length=500, blank=True, null=True)
-    progress = models.IntegerField(default=0)
 
+class UserLesson(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True)
+    status = models.CharField(max_length=100, blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
 
 class Activity(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
-    flag_completed = models.BooleanField(default=False)
+    image = models.CharField(max_length=500, blank=True, null=True)
     num_by_lesson = models.IntegerField(default=1)
+    kind = models.CharField(max_length=100, blank=True, null=True)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True)
+
+class TheoryActivity(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
+    meaning = models.CharField(max_length=500, blank=True, null=True)
+    description = models.CharField(max_length=500, blank=True, null=True)
+
+class LinkActivity(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
+    image1 = models.CharField(max_length=500, blank=True, null=True)
+    image2 = models.CharField(max_length=500, blank=True, null=True)
+    image3 = models.CharField(max_length=500, blank=True, null=True)
+    image4 = models.CharField(max_length=500, blank=True, null=True)
+    image5 = models.CharField(max_length=500, blank=True, null=True)
+    meaning1 = models.CharField(max_length=500, blank=True, null=True)
+    meaning2 = models.CharField(max_length=500, blank=True, null=True)
+    meaning3 = models.CharField(max_length=500, blank=True, null=True)
+    meaning4 = models.CharField(max_length=500, blank=True, null=True)
+    meaning5 = models.CharField(max_length=500, blank=True, null=True)
+
+class SecuenceActivity(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
+    imageReference = models.CharField(max_length=500, blank=True, null=True) 
+    image1 = models.CharField(max_length=500, blank=True, null=True)
+    image2 = models.CharField(max_length=500, blank=True, null=True)
+    image3 = models.CharField(max_length=500, blank=True, null=True)
+    image4 = models.CharField(max_length=500, blank=True, null=True)
+    image5 = models.CharField(max_length=500, blank=True, null=True)
+
+class RecognitionActivity(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
+    meaning = models.CharField(max_length=500, blank=True, null=True)
 
 class Score(models.Model):
     score = models.IntegerField()
@@ -68,32 +113,41 @@ class Score(models.Model):
 
 class Goal(models.Model):
     objective = models.CharField(max_length=100, blank=True)
-    period = models.CharField(max_length=100, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    status = models.CharField(max_length=100, blank=True)
+    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
 
-class Resource(models.Model):
-    kind = models.CharField(max_length=100, blank=True)
-    url = models.CharField(max_length=500, blank=True)
-    name = models.CharField(max_length=100, blank=True)
-    description = models.CharField(max_length=300, blank=True)
-    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
+class Medal(models.Model):
+    lessonUser = models.ForeignKey(UserLesson, on_delete=models.CASCADE, blank=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
+    description = models.CharField(max_length=500, blank=True, null=True)
 
 class Certificate(models.Model):
     date = models.DateField()
     title = models.CharField(max_length=100, blank=True, default='')
     description = models.CharField(max_length=300, blank=True, default='')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True)
 
-class Dictionary(models.Model):
-    word = models.CharField(max_length=100)
-    meaning = models.CharField(max_length=300)
+class Tutorial(models.Model):
+    title = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=300, blank=True)
+    url = models.CharField(max_length=1000, blank=True)
 
 class Avatar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    design = models.CharField(max_length=100)
+    image = models.CharField(max_length=500, blank=True, null=True)
 
 class Notification(models.Model):
     kind = models.CharField(max_length=100)
     message = models.CharField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+
+class NotificationUser(models.Model):
+    notification = models.ForeignKey(Notification, on_delete=models.CASCADE, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    status = models.CharField(max_length=100, blank=True, null=True)
+
