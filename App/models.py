@@ -90,6 +90,19 @@ class LinkActivity(models.Model):
     meaning4 = models.CharField(max_length=500, blank=True, null=True)
     meaning5 = models.CharField(max_length=500, blank=True, null=True)
 
+class MemoryActivity(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
+    image1 = models.CharField(max_length=500, blank=True, null=True)
+    image2 = models.CharField(max_length=500, blank=True, null=True)
+    image3 = models.CharField(max_length=500, blank=True, null=True)
+    image4 = models.CharField(max_length=500, blank=True, null=True)
+    image5 = models.CharField(max_length=500, blank=True, null=True)
+    pairimage1 = models.CharField(max_length=500, blank=True, null=True)
+    pairimage2 = models.CharField(max_length=500, blank=True, null=True)
+    pairimage3 = models.CharField(max_length=500, blank=True, null=True)
+    pairimage4 = models.CharField(max_length=500, blank=True, null=True)
+    pairimage5 = models.CharField(max_length=500, blank=True, null=True)
+
 class SecuenceActivity(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE, blank=True)
     imageReference = models.CharField(max_length=500, blank=True, null=True) 

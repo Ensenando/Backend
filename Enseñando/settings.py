@@ -65,12 +65,16 @@ PROJECT_APPS = [
     'activity',
     'score',
     'goal',
-    'resource',
     'avatar',
     'notification',
     'certificate',
     'tutorial',
     'medal',
+    'theoryactivity',
+    'recognitionactivity',
+    'linkactivity',
+    'memoryactivity',
+    'secuenceactivity',
 ]
 
 THIRD_PARTY_APPS = [
