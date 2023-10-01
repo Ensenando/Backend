@@ -61,12 +61,15 @@ INTERNAL_APPS = [
 PROJECT_APPS = [
     'App',
     'user',
+    'useraudit'
     'lesson',
+    'userlesson',
     'activity',
     'score',
     'goal',
     'avatar',
     'notification',
+    'notificationuser',
     'certificate',
     'tutorial',
     'medal',

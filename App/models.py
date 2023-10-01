@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class UserAudit(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    log_date = models.DateTimeField(blank=True, null=True)
+    log_date = models.DateTimeField(auto_now_add=True)
 
 class Lesson(models.Model):
     name = models.CharField(max_length=100)
@@ -136,9 +136,9 @@ class Medal(models.Model):
     description = models.CharField(max_length=500, blank=True, null=True)
 
 class Certificate(models.Model):
-    date = models.DateField()
     title = models.CharField(max_length=100, blank=True, default='')
     description = models.CharField(max_length=300, blank=True, default='')
+    created_at = models.DateTimeField(auto_now_add=True)
     userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True)
