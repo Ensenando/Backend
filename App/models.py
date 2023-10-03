@@ -127,8 +127,8 @@ class Score(models.Model):
 class Goal(models.Model):
     objective = models.CharField(max_length=100, blank=True)
     status = models.CharField(max_length=100, blank=True)
-    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name='goalUserTutor')
+    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name='goalUserStudent')
 
 class Medal(models.Model):
     lessonUser = models.ForeignKey(UserLesson, on_delete=models.CASCADE, blank=True)
@@ -139,8 +139,8 @@ class Certificate(models.Model):
     title = models.CharField(max_length=100, blank=True, default='')
     description = models.CharField(max_length=300, blank=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
-    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name='certificateUserTutor')
+    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name='certificateUserStudent')
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True)
 
 class Tutorial(models.Model):
@@ -156,8 +156,8 @@ class Notification(models.Model):
     kind = models.CharField(max_length=100)
     message = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
-    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    userTutor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name='notificationUserTutor')
+    userStudent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name='notificationUserStudent')
 
 class NotificationUser(models.Model):
     notification = models.ForeignKey(Notification, on_delete=models.CASCADE, blank=True)

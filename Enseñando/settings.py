@@ -61,7 +61,7 @@ INTERNAL_APPS = [
 PROJECT_APPS = [
     'App',
     'user',
-    'useraudit'
+    'useraudit',
     'lesson',
     'userlesson',
     'activity',
