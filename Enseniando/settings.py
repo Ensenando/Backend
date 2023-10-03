@@ -140,9 +140,17 @@ WSGI_APPLICATION = 'Enseniando.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
+    'default_old': {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+   },
+   'default': {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "enseniandodb",
+        "USER": "enseniandodb_user",
+        "PASSWORD": "Z7HWGyrcvgjjaCs1tyc5nokr45o1Ppxo",
+        "HOST": "dpg-ckdm0pljhfbs73bvufs0-a.oregon-postgres.render.com",
+        "PORT": "5432",
    }
 }
 
