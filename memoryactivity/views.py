@@ -16,8 +16,7 @@ class MemoryActivityView(generics.CreateAPIView):
     View for logging in a user.
     """
     serializer_class = MemoryActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         activity_id = self.kwargs['id']
@@ -36,8 +35,7 @@ class MemoryActivityUpdateView(generics.UpdateAPIView):
     View for logging in a user.
     """
     serializer_class = MemoryActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = MemoryActivity.objects.all()
         
 
@@ -46,8 +44,7 @@ class MemoryActivityDeleteView(generics.DestroyAPIView):
     View for logging in a user.
     """
     serializer_class = MemoryActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = MemoryActivity.objects.all()
     
 
@@ -57,7 +54,6 @@ class MemoryActivityListView(generics.ListAPIView):
     """
     serializer_class = MemoryActivitySerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
         activity_id = self.kwargs['id']

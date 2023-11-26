@@ -16,8 +16,7 @@ class AvatarView(generics.CreateAPIView):
     View for logging in a user.
     """
     serializer_class = AvatarSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         user_id = self.kwargs['id']
@@ -36,8 +35,7 @@ class AvatarUpdateView(generics.UpdateAPIView):
     View for logging in a user.
     """
     serializer_class = AvatarSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = Avatar.objects.all()
         
 
@@ -46,8 +44,7 @@ class AvatarDeleteView(generics.DestroyAPIView):
     View for logging in a user.
     """
     serializer_class = AvatarSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = Avatar.objects.all()
     
 
@@ -57,7 +54,6 @@ class AvatarListView(generics.ListAPIView):
     """
     serializer_class = AvatarSerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
         user_id = self.kwargs['id']

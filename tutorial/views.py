@@ -16,8 +16,7 @@ class TutorialView(generics.CreateAPIView):
     View for logging in a user.
     """
     serializer_class = TutorialSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
 
 class TutorialUpdateView(generics.UpdateAPIView):
@@ -25,8 +24,7 @@ class TutorialUpdateView(generics.UpdateAPIView):
     View for logging in a user.
     """
     serializer_class = TutorialSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = Tutorial.objects.all()
         
 
@@ -35,8 +33,7 @@ class TutorialDeleteView(generics.DestroyAPIView):
     View for logging in a user.
     """
     serializer_class = TutorialSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = Tutorial.objects.all()
     
 
@@ -46,7 +43,6 @@ class TutorialListView(generics.ListAPIView):
     """
     serializer_class = TutorialSerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
     queryset = Tutorial.objects.all()
 
 

@@ -16,8 +16,7 @@ class ActivityView(generics.CreateAPIView):
     View for logging in a user.
     """
     serializer_class = ActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         lesson_id = self.kwargs['id']
@@ -36,8 +35,7 @@ class ActivityUpdateView(generics.UpdateAPIView):
     View for logging in a user.
     """
     serializer_class = ActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = Activity.objects.all()
         
 
@@ -46,8 +44,7 @@ class ActivityDeleteView(generics.DestroyAPIView):
     View for logging in a user.
     """
     serializer_class = ActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = Activity.objects.all()
     
 

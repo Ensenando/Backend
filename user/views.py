@@ -43,8 +43,7 @@ class CreateUserView(generics.CreateAPIView):
     
 class ManageUserView(generics.RetrieveUpdateDestroyAPIView): # GET, PUT, PATCH
     serializer_class = UserSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def get_object(self):
         return self.request.user

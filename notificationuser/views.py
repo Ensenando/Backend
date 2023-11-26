@@ -16,8 +16,7 @@ class NotificationUserView(generics.CreateAPIView):
     View for logging in a user.
     """
     serializer_class = NotificationUserSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         notification_id = self.kwargs['id']
@@ -39,8 +38,7 @@ class NotificationUserUpdateView(generics.UpdateAPIView):
     View for logging in a user.
     """
     serializer_class = NotificationUserSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = NotificationUser.objects.all()
         
 
@@ -49,8 +47,7 @@ class NotificationUserDeleteView(generics.DestroyAPIView):
     View for logging in a user.
     """
     serializer_class = NotificationUserSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = NotificationUser.objects.all()
     
 
@@ -60,7 +57,6 @@ class NotificationUserListView(generics.ListAPIView):
     """
     serializer_class = NotificationUserSerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
         notification_id = self.kwargs['id']

@@ -17,7 +17,6 @@ class ScoreView(generics.CreateAPIView):
     """
     serializer_class = ScoreSerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
 
     def perform_create(self, serializer):
         activity_id = self.kwargs['id']
@@ -37,7 +36,6 @@ class ScoreUpdateView(generics.UpdateAPIView):
     """
     serializer_class = ScoreSerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
     queryset = Score.objects.all()
     
 
@@ -47,7 +45,6 @@ class ScoreListView(generics.ListAPIView):
     """
     serializer_class = ScoreSerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
         activity_id = self.kwargs['id']

@@ -16,8 +16,7 @@ class TheoryActivityView(generics.CreateAPIView):
     View for logging in a user.
     """
     serializer_class = TheoryActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         activity_id = self.kwargs['id']
@@ -36,8 +35,7 @@ class TheoryActivityUpdateView(generics.UpdateAPIView):
     View for logging in a user.
     """
     serializer_class = TheoryActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = TheoryActivity.objects.all()
         
 
@@ -46,8 +44,7 @@ class TheoryActivityDeleteView(generics.DestroyAPIView):
     View for logging in a user.
     """
     serializer_class = TheoryActivitySerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = TheoryActivity.objects.all()
     
 
@@ -57,7 +54,6 @@ class TheoryActivityListView(generics.ListAPIView):
     """
     serializer_class = TheoryActivitySerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
         activity_id = self.kwargs['id']

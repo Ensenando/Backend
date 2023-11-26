@@ -17,23 +17,20 @@ class LessonView(generics.CreateAPIView):
     View for logging in a user.
     """
     serializer_class = LessonSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
 class LessonUpdateView(generics.UpdateAPIView):
     """
     View for logging in a user.
     """
     serializer_class = LessonSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
     queryset = Lesson.objects.all()
 
 class LessonDeleteView(generics.DestroyAPIView):
     serializer_class = LessonSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
     queryset = Lesson.objects.all()
 
@@ -44,7 +41,6 @@ class LessonListView(generics.ListAPIView):
     """
     serializer_class = LessonSerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
 
     queryset = Lesson.objects.all()
 

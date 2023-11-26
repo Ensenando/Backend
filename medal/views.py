@@ -4,7 +4,7 @@ from rest_framework import (
     status,
 )
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from App.models import Medal, UserLesson
+from App.models import Medal, UserLesson, User
 from django.shortcuts import get_object_or_404
 from .serializers import (
     MedalSerializer
@@ -16,8 +16,7 @@ class MedalView(generics.CreateAPIView):
     View for logging in a user.
     """
     serializer_class = MedalSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         user_id = self.kwargs['id']
@@ -36,8 +35,7 @@ class MedalUpdateView(generics.UpdateAPIView):
     View for logging in a user.
     """
     serializer_class = MedalSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = Medal.objects.all()
         
 
@@ -46,8 +44,7 @@ class MedalDeleteView(generics.DestroyAPIView):
     View for logging in a user.
     """
     serializer_class = MedalSerializer
-    permission_classes = [permissions.IsAdminUser]
-    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.AllowAny]
     queryset = Medal.objects.all()
     
 
@@ -57,7 +54,6 @@ class MedalListView(generics.ListAPIView):
     """
     serializer_class = MedalSerializer
     permission_classes = [permissions.AllowAny]
-    authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
         user_id = self.kwargs['id']
